@@ -45,4 +45,21 @@ class CategoryController extends Controller
     {
         //
     }
+    public function status(Category $category)
+    {
+        
+        if ($category->is_active == 1) 
+         {
+            $category->is_active = 0;
+            $category->save();         
+         }
+        else 
+         {
+            $category->is_active = 1;
+            $category->save();    
+         }
+
+         return redirect()->back()->with('success','Product Status changed successfully');
+        
+    }
 }

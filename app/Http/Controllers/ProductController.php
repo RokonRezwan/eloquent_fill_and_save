@@ -74,4 +74,22 @@ class ProductController extends Controller
         //redirect the user with a success message
         return redirect()->route('products.index')->with('success','Product deleted successfully');
     }
+
+    public function status(Product $product)
+    {
+        
+        if ($product->is_active == 1) 
+         {
+            $product->is_active = 0;
+            $product->save();         
+         }
+        else 
+         {
+            $product->is_active = 1;
+            $product->save();    
+         }
+
+         return redirect()->back()->with('success','Product Status changed successfully');
+        
+    }
 }
